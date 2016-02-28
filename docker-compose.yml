@@ -1,0 +1,23 @@
+web:
+  build: ./
+  volumes:
+    - "./:/src/app"
+  ports:
+    - "80:3000"
+  links:
+   - elasticsearch
+   - redis
+
+redis:
+    image: redis:latest
+    ports:
+        - "6379:6379"
+elasticsearch:
+    image: elasticsearch:latest
+    ports:
+        - "9200:9200"
+        - "9300:9300"
+    expose:
+        - "9200"
+        - "9300"
+
